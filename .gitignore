@@ -1,2 +1,4 @@
 data
 *.mypy
+.venv
+__pycache__
