@@ -9,3 +9,17 @@ This package allows you to train model for determine the heart disease.
 python ml_project/eda.py configs/eda_config.yaml
 ```
 There is also an EDA.ipynb report in *notebooks*.
+
+4. Run train with the following command:
+```sh
+python ml_project/train_pipeline.py configs/train_config1.yaml
+```
+OR
+```sh
+python ml_project/train_pipeline.py configs/train_config2.yaml
+```
+
+4. Run predict with the following command:
+```sh
+python ml_project/predict.py configs/predict_config.yaml
+```

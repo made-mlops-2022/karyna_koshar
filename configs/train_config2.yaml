@@ -4,14 +4,14 @@ features_val_path: "data/features_val.csv"
 target_val_path: "data/target_val.csv"
 splitting_params:
   val_size: 0.2
-  random_state: 3
+  random_state: 4
 preprocessing_params: 
   use_scaler: True
-  use_custom_transformer: False
-  scaler: "StandardScaler"
+  use_custom_transformer: True
+  scaler: "MinMaxScaler"
 train_params:
-  model_type: "RandomForestClassifier"
-  random_state: 3
+  model_type: "LogisticRegression"
+  random_state: 4
 feature_params:
   categorical_features:
     - "sex"

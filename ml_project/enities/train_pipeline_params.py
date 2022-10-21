@@ -12,7 +12,8 @@ from .preprocessing_params import PreprocessingParams
 class TrainPipelineParams:
     input_data_path: str
     output_model_path: str
-    metric_path: str
+    features_val_path: str
+    target_val_path: str
     splitting_params: SplittingParams
     preprocessing_params: PreprocessingParams
     feature_params: FeatureParams

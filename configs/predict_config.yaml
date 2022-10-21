@@ -1,0 +1,5 @@
+metric_path: "models/metrics.json"
+predicts_path: "models/predicts.csv"
+model_path: "models/model.pkl"
+features_val_path: "data/features_val.csv"
+target_val_path: "data/target_val.csv"
