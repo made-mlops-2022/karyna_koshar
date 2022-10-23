@@ -4,7 +4,7 @@ import yaml
 
 from .split_params import SplittingParams
 from .feature_params import FeatureParams
-from .train_params import TrainingParams
+from .train_params import TrainParams
 from .preprocessing_params import PreprocessingParams
 
 
@@ -17,7 +17,7 @@ class TrainPipelineParams:
     splitting_params: SplittingParams
     preprocessing_params: PreprocessingParams
     feature_params: FeatureParams
-    train_params: TrainingParams
+    train_params: TrainParams
 
 
 TrainPipelineParamsSchema = class_schema(TrainPipelineParams)

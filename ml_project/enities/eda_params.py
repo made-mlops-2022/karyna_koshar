@@ -11,6 +11,7 @@ class EdaParams:
 
 EdaParamsSchema = class_schema(EdaParams)
 
+
 def read_eda_params(path: str) -> EdaParams:
     with open(path, "r") as input_stream:
         schema = EdaParamsSchema()

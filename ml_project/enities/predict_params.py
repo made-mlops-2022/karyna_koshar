@@ -10,9 +10,11 @@ class PredictParams:
     model_path: str
     features_val_path: str
     target_val_path: str
+    use_mlflow: bool
 
 
 PredictParamsSchema = class_schema(PredictParams)
+
 
 def read_predict_params(path: str) -> PredictParams:
     with open(path, "r") as input_stream:

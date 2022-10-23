@@ -1,7 +1,7 @@
 import pandas as pd
 from pandas_profiling import ProfileReport
-from enities.eda_params import read_eda_params
 import click
+from ml_project.enities.eda_params import read_eda_params
 
 
 @click.command()

@@ -4,7 +4,6 @@ from sklearn.utils.validation import check_is_fitted
 
 
 class CategoricalTransformer(BaseEstimator, TransformerMixin):
-
     def __init__(self, cols=None):
         if isinstance(cols, str):
             self.cols = [cols]
@@ -17,9 +16,9 @@ class CategoricalTransformer(BaseEstimator, TransformerMixin):
 
         for col in self.cols:
             if col not in X:
-                raise ValueError('Column ' + col + ' not in X')
+                raise ValueError("Column " + col + " not in X")
 
-        self.maps = dict() 
+        self.maps = dict()
         for col in self.cols:
             tmap = dict()
             uniques = X[col].unique()
@@ -30,7 +29,7 @@ class CategoricalTransformer(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X, y=None):
-        check_is_fitted(self, ['maps'])
+        check_is_fitted(self, ["maps"])
         Xo = X.copy()
         for col, tmap in self.maps.items():
             vals = np.full(X.shape[0], np.nan)
