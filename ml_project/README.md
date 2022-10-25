@@ -39,3 +39,4 @@ pytest tests/
 ```sh
 mlflow ui
 ```
+![mlflow logs](https://user-images.githubusercontent.com/98235486/197872052-b56c043f-0d37-4e46-9766-e7db3a9f48eb.PNG)
