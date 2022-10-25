@@ -21,18 +21,24 @@ jobs:
           python-version: 3.9
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          cd ml_project
+          pip install -r requirements.txt
   
       - name: Run tests
-        run: pytest 
+        run: |
+          cd ml_project
+          pytest 
 
       - name: Run linter flake8
         run: |
+          cd ml_project
           flake8 --max-line-length=120 ml_project
           flake8 --max-line-length=120 tests
 
-      - name: Run linter black
+      - name: Run black
         run: |
+          cd ml_project
           black ml_project
           black tests
         
