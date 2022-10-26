@@ -3,7 +3,7 @@ import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from ml_project.enities.train_pipeline_params import read_train_pipeline_params
+from ml_project.entities.train_pipeline_params import read_train_pipeline_params
 from ml_project.features.features import build_transformer, process_data
 from ml_project.models.model import train_model, model_pipeline, save_model
 

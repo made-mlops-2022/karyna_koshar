@@ -3,8 +3,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler, MinMaxScaler
 
-from ml_project.enities.feature_params import FeatureParams
-from ml_project.enities.preprocessing_params import PreprocessingParams
+from ml_project.entities.feature_params import FeatureParams
+from ml_project.entities.preprocessing_params import PreprocessingParams
 from ml_project.features.custom_transformer import CategoricalTransformer
 
 

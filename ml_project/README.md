@@ -20,11 +20,11 @@ There is also an EDA.ipynb report in *notebooks*.
 
 5. Run train with the following command:
 ```sh
-python ml_project/train_pipeline.py configs/train_config1.yaml
+python ml_project/train_pipeline.py configs/train_config_forest.yaml
 ```
 OR
 ```sh
-python ml_project/train_pipeline.py configs/train_config2.yaml
+python ml_project/train_pipeline.py configs/train_config_logreg.yaml
 ```
 
 6. Run predict with the following command:

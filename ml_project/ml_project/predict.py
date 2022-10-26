@@ -7,7 +7,7 @@ import pandas as pd
 from typing import Dict
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
-from ml_project.enities.predict_params import read_predict_params
+from ml_project.entities.predict_params import read_predict_params
 from ml_project.models.model import read_model
 
 

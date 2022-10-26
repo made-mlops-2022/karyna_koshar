@@ -39,9 +39,9 @@ from ml_project.predict import (
     save_metrics,
 )
 
-from ml_project.enities.train_params import TrainParams
-from ml_project.enities.feature_params import FeatureParams
-from ml_project.enities.preprocessing_params import PreprocessingParams
+from ml_project.entities.train_params import TrainParams
+from ml_project.entities.feature_params import FeatureParams
+from ml_project.entities.preprocessing_params import PreprocessingParams
 
 
 @pytest.fixture

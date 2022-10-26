@@ -2,12 +2,12 @@ from typing import List
 from faker import Faker
 import pandas as pd
 
-from ml_project.enities.feature_params import FeatureParams
-from ml_project.enities.split_params import SplittingParams
-from ml_project.enities.preprocessing_params import PreprocessingParams
-from ml_project.enities.train_params import TrainParams
-from ml_project.enities.train_pipeline_params import TrainPipelineParams
-from ml_project.enities.predict_params import PredictParams
+from ml_project.entities.feature_params import FeatureParams
+from ml_project.entities.split_params import SplittingParams
+from ml_project.entities.preprocessing_params import PreprocessingParams
+from ml_project.entities.train_params import TrainParams
+from ml_project.entities.train_pipeline_params import TrainPipelineParams
+from ml_project.entities.predict_params import PredictParams
 
 
 def generate_fake_data(num_rows: int) -> pd.DataFrame:

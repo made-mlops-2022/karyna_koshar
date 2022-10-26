@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
-from ml_project.enities.train_params import TrainParams
+from ml_project.entities.train_params import TrainParams
 
 SklearnClassifier = Union[RandomForestClassifier, LogisticRegression]
 
