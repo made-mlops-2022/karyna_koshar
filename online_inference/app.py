@@ -2,34 +2,12 @@ from fastapi import FastAPI
 from sklearn.pipeline import Pipeline
 import pandas as pd
 import pickle
-from typing import Optional, List, Literal
-from pydantic import BaseModel
+from typing import Optional, List
 import os
-import uvicorn
+from validator_app import HeartDiseaseData, MedicalResponse
 
 app = FastAPI()
 model: Optional[Pipeline] = None
-
-
-class HeartDiseaseData(BaseModel):
-    age: float
-    sex: Literal[0, 1]
-    cp: Literal[0, 1, 2, 3]
-    trestbps: float
-    chol: float
-    fbs: Literal[0, 1]
-    restecg: Literal[0, 1, 2]
-    thalach: float
-    exang: Literal[0, 1]
-    oldpeak: float
-    slope: Literal[0, 1, 2]
-    ca: Literal[0, 1, 2, 3]
-    thal: Literal[0, 1, 2]
-
-
-class MedicalResponse(BaseModel):
-    id: int
-    condition: Literal[0, 1]
 
 
 def load_object(path: str) -> Pipeline:
