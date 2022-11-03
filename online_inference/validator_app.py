@@ -23,37 +23,42 @@ class HeartDiseaseData(BaseModel):
     ca: Literal[0, 1, 2, 3]
     thal: Literal[0, 1, 2]
 
-
-    @validator('age')
+    @validator("age")
     def validation_age(cls, v):
         if v < 0 or v > 120:
-            raise HTTPException(detail=[{'msg':'ValueError: age value'}], status_code=400)
+            raise HTTPException(
+                detail=[{"msg": "ValueError: age value"}], status_code=400
+            )
         return v
 
-
-    @validator('trestbps')
+    @validator("trestbps")
     def validation_trestbps(cls, v):
         if v < 0 or v > 300:
-            raise HTTPException(detail=[{'msg':'ValueError:wrong trestbps value'}], status_code=400)
+            raise HTTPException(
+                detail=[{"msg": "ValueError:wrong trestbps value"}], status_code=400
+            )
         return v
 
-
-    @validator('chol')
+    @validator("chol")
     def validation_chol(cls, v):
         if v < 0 or v > 600:
-            raise HTTPException(detail=[{'msg':'ValueError: chol value'}], status_code=400)
+            raise HTTPException(
+                detail=[{"msg": "ValueError: chol value"}], status_code=400
+            )
         return v
 
-
-    @validator('thalach')
+    @validator("thalach")
     def validation_thalach(cls, v):
         if v < 0 or v > 300:
-            raise HTTPException(detail=[{'msg':'ValueError: thalach value'}], status_code=400)
+            raise HTTPException(
+                detail=[{"msg": "ValueError: thalach value"}], status_code=400
+            )
         return v
 
-
-    @validator('oldpeak')
+    @validator("oldpeak")
     def validation_oldpeak(cls, v):
         if v < 0 or v > 10:
-            raise HTTPException(detail=[{'msg':'ValueError: oldpeak value'}], status_code=400)
+            raise HTTPException(
+                detail=[{"msg": "ValueError: oldpeak value"}], status_code=400
+            )
         return v

@@ -15,7 +15,7 @@ fi
 
 if [[ ! -f $PATH_DATA ]]
 then
-    wget -q -O $PATH_DATA 'https://drive.google.com/uc?export=download&id=1gOtgHlL-pm8wqQq8aYzYyoPoAZhGPMuo' 
+    gdown 'https://drive.google.com/uc?export=download&id=1gOtgHlL-pm8wqQq8aYzYyoPoAZhGPMuo' -q -O $PATH_DATA
     echo 'data downloaded'
 else 
     echo 'data is already loaded'
@@ -23,7 +23,7 @@ fi
 
 if [[ ! -f $PATH_TO_MODEL ]]
 then
-    wget -q -O $PATH_TO_MODEL 'https://drive.google.com/uc?export=download&id=1RxOo6Bdfkw4uSP1KI4X4-xAvNH1CMMkB'  
+    gdown 'https://drive.google.com/uc?export=download&id=1RxOo6Bdfkw4uSP1KI4X4-xAvNH1CMMkB' -q -O $PATH_TO_MODEL
     echo 'model downloaded'
 else
     echo 'model is already loaded'
