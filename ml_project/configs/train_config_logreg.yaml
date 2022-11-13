@@ -1,7 +1,7 @@
 input_data_path: "data/heart_cleveland_upload.csv"
 output_model_path: "models/model.pkl"
 features_val_path: "data/features_val.csv"
-target_val_path: "data/target_val.csv"
+metric_path: "models/metrics.json"
 splitting_params:
   val_size: 0.2
   random_state: 4

@@ -5,12 +5,9 @@ import yaml
 
 @dataclass()
 class PredictParams:
-    metric_path: str
     predicts_path: str
     model_path: str
     features_val_path: str
-    target_val_path: str
-    use_mlflow: bool
 
 
 PredictParamsSchema = class_schema(PredictParams)

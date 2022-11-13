@@ -1,5 +1,4 @@
 import os
-import json
 import pandas as pd
 import pytest
 from click.testing import CliRunner
@@ -37,9 +36,9 @@ from ml_project.predict import (
     classifier_metrics,
     save_predicts,
     save_metrics,
+    read_metrics,
 )
 
-from ml_project.entities.train_params import TrainParams
 from ml_project.entities.feature_params import FeatureParams
 from ml_project.entities.preprocessing_params import PreprocessingParams
 
@@ -56,16 +55,14 @@ def test_valid_all_project(runner: CliRunner) -> None:
         fake_data.to_csv("data/heart_cleveland_upload.csv", index=False)
 
         os.mkdir("models")
-        path_to_model = run_train_pipeline(create_config_train())
+        path_to_model, path_to_metrics = run_train_pipeline(create_config_train())
         assert os.path.exists(path_to_model)
-
-        path_to_predicts, path_to_metrics = run_predict_model(create_config_predict())
-        assert os.path.exists(path_to_predicts)
         assert os.path.exists(path_to_metrics)
 
-        with open("models/metrics.json", "r") as json_file:
-            metrics = json.load(json_file)
+        path_to_predicts = run_predict_model(create_config_predict())
+        assert os.path.exists(path_to_predicts)
 
+        metrics = read_metrics("models/metrics.json")
         assert 1 >= metrics["accuracy"] >= 0
         assert 1 >= metrics["f1"] >= 0
         assert 1 >= metrics["precision"] >= 0
@@ -80,27 +77,17 @@ def test_model(runner: CliRunner) -> None:
         fake_data = generate_fake_data(200)
         target_train = fake_data["condition"]
         df_train = fake_data.drop("condition", axis=1)
+        config = create_config_train()
 
         model = train_model(
             df_train,
             target_train,
-            TrainParams(model_type="RandomForestClassifier", random_state=42),
+            config.train_params,
         )
         assert isinstance(model, RandomForestClassifier)
 
-        transformer = ColumnTransformer(
-            transformers=[
-                (
-                    "categorical_pipeline",
-                    Pipeline(steps=[("ohe", OneHotEncoder(drop="first"))]),
-                    categorical_features(),
-                ),
-                (
-                    "numerical_pipeline",
-                    Pipeline(steps=[("scaler", StandardScaler())]),
-                    numerical_features(),
-                ),
-            ]
+        transformer = build_transformer(
+            config.feature_params, config.preprocessing_params
         )
         pipeline = model_pipeline(model, transformer)
 
@@ -156,7 +143,7 @@ def test_custom_transformer(runner: CliRunner) -> None:
 
         transformer = CategoricalTransformer()
         transform_data = transformer.fit_transform(df_train)
-        print(transform_data)
+
         assert transform_data.shape == (200, 8)
         for col in categorical_features():
             assert 0 < transform_data[col].max() < 1
@@ -176,14 +163,14 @@ def test_predict(runner: CliRunner) -> None:
         fake_data = generate_fake_data(200)
         target_train = fake_data["condition"]
 
-        metrics = classifier_metrics(target_train.values, target_train)
+        metrics = classifier_metrics(target_train, target_train)
         assert 1 >= metrics["accuracy"] >= 0
         assert 1 >= metrics["f1"] >= 0
         assert 1 >= metrics["precision"] >= 0
         assert 1 >= metrics["recall"] >= 0
 
         os.mkdir("models")
-        predicts = save_predicts(target_train.values, "models/predicts.csv")
+        predicts = save_predicts(target_train, "models/predicts.csv")
         assert os.path.exists(predicts)
 
         metrics_output = save_metrics(metrics, "models/metrics.json")

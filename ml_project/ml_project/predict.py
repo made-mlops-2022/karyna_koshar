@@ -1,7 +1,6 @@
 import json
 import click
 import logging
-import mlflow
 import numpy as np
 import pandas as pd
 from typing import Dict
@@ -33,7 +32,13 @@ def save_metrics(metrics: Dict[str, float], output: str) -> str:
     return output
 
 
-def get_stream_handler():
+def read_metrics(input: str) -> Dict[str, float]:
+    with open(input, "r") as json_file:
+        metrics = json.load(json_file)
+    return metrics
+
+
+def get_stream_handler() -> object:
     log_format = "%(asctime)s - %(levelname)s - %(message)s"
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(logging.INFO)
@@ -57,27 +62,13 @@ def predict_model(config_path: str):
 def run_predict_model(predict_params):
     logger.info(f"start predict model: {predict_params}")
     model = read_model(predict_params.model_path)
-    target_val = pd.read_csv(predict_params.target_val_path)
     df_val = pd.read_csv(predict_params.features_val_path)
-
     predicts = model.predict(df_val)
 
-    metrics_result = classifier_metrics(predicts, target_val)
-    logger.info(f"metrics result: {metrics_result}")
-
-    logger.info("saving predicts and metrics")
+    logger.info("saving predicts")
     path_to_predicts = save_predicts(predicts, predict_params.predicts_path)
-    path_to_metrics = save_metrics(metrics_result, predict_params.metric_path)
 
-    if predict_params.use_mlflow:
-        with mlflow.start_run():
-            mlflow.sklearn.log_model(model, "model")
-            mlflow.log_metric("Accuracy", metrics_result["accuracy"])
-            mlflow.log_metric("F1", metrics_result["f1"])
-            mlflow.log_metric("Precision", metrics_result["precision"])
-            mlflow.log_metric("Recall", metrics_result["recall"])
-
-    return path_to_predicts, path_to_metrics
+    return path_to_predicts
 
 
 if __name__ == "__main__":

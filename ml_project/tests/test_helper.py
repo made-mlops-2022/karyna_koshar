@@ -63,7 +63,7 @@ def numerical_features() -> List[str]:
     ]
 
 
-def get_columns() -> list[str]:
+def get_columns() -> List[str]:
     return [target_col()] + categorical_features() + numerical_features()
 
 
@@ -72,7 +72,7 @@ def create_config_train() -> TrainPipelineParams:
         input_data_path="data/heart_cleveland_upload.csv",
         output_model_path="models/model.pkl",
         features_val_path="data/features_val.csv",
-        target_val_path="data/target_val.csv",
+        metric_path="models/metrics.json",
         splitting_params=SplittingParams(val_size=0.2, random_state=42),
         preprocessing_params=PreprocessingParams(
             use_scaler=True, use_custom_transformer=False, scaler="StandardScaler"
@@ -82,18 +82,19 @@ def create_config_train() -> TrainPipelineParams:
             categorical_features=categorical_features(),
             target_col=target_col(),
         ),
-        train_params=TrainParams(model_type="LogisticRegression"),
+        train_params=TrainParams(
+            model_type="RandomForestClassifier",
+            n_estimators=200,
+            random_state=42,
+        ),
     )
     return params
 
 
 def create_config_predict() -> PredictParams:
     params = PredictParams(
-        metric_path="models/metrics.json",
         predicts_path="models/predicts.csv",
         model_path="models/model.pkl",
         features_val_path="data/features_val.csv",
-        target_val_path="data/target_val.csv",
-        use_mlflow=False,
     )
     return params

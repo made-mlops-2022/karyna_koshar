@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from marshmallow_dataclass import class_schema
 import yaml
 
@@ -13,11 +13,12 @@ class TrainPipelineParams:
     input_data_path: str
     output_model_path: str
     features_val_path: str
-    target_val_path: str
+    metric_path: str
     splitting_params: SplittingParams
     preprocessing_params: PreprocessingParams
     feature_params: FeatureParams
     train_params: TrainParams
+    use_mlflow: bool = field(default=False)
 
 
 TrainPipelineParamsSchema = class_schema(TrainPipelineParams)

@@ -18,7 +18,8 @@ def train_model(
 
     if train_params.model_type == "RandomForestClassifier":
         model = RandomForestClassifier(
-            n_estimators=200, random_state=train_params.random_state
+            n_estimators=train_params.n_estimators,
+            random_state=train_params.random_state,
         )
     elif train_params.model_type == "LogisticRegression":
         model = LogisticRegression()
