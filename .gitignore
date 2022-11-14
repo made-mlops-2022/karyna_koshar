@@ -1,8 +1,10 @@
 data
-*.mypy
 .venv
 __pycache__
+.env
 .pytest_cache
+model
+*.mypy
 build/
 dist/
 *.egg-info/
