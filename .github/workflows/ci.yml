@@ -1,0 +1,44 @@
+name: Tests and linters
+
+on:
+  push:
+    branches: [ main, homework1 ]
+  pull_request:
+    branches: [ main, homework1 ]
+
+jobs:
+  tests_linters:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+      
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          cd ml_project
+          pip install -r requirements.txt
+  
+      - name: Run tests
+        run: |
+          cd ml_project
+          pytest 
+
+      - name: Run linter flake8
+        run: |
+          cd ml_project
+          flake8 --max-line-length=120 ml_project
+          flake8 --max-line-length=120 tests
+
+      - name: Run black
+        run: |
+          cd ml_project
+          black ml_project
+          black tests
+        
