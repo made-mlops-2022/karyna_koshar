@@ -38,6 +38,6 @@ Removed unnecessary packages, requirements.txt contains only necessary packages 
 - online_inference:v4   
 Excluded all files that don't need to be copied, added .dockerignore - size 563.11 MB;
 - online_inference:v5   
-(this is the current version at DockerHub mlops_online_inference:v1)
+(this is the current version at DockerHub mlops_online_inference:v1)  
 The instructions in dockerfile are combined - size 561.04 MB. 
 ![docker images](https://user-images.githubusercontent.com/98235486/201635464-00838ea2-98ad-49cc-b1ac-8028181f1e3e.jpg)
