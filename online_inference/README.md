@@ -33,11 +33,10 @@ python request.py
 The first version of dockerfile - size 674.9 MB;
 - online_inference:v2  
 --no-cache-dir flag has been added to pip - size 563.11 MB;
-![docker images](https://user-images.githubusercontent.com/98235486/201635464-00838ea2-98ad-49cc-b1ac-8028181f1e3e.jpg)
-
 - online_inference:v3   
 Removed unnecessary packages, requirements.txt contains only necessary packages - size 563.11 MB;
 - online_inference:v4   
 Excluded all files that don't need to be copied, added .dockerignore - size 563.11 MB;
 - online_inference:v5   
 The instructions in dockerfile are combined - size 561.04 MB. 
+![docker images](https://user-images.githubusercontent.com/98235486/201635464-00838ea2-98ad-49cc-b1ac-8028181f1e3e.jpg)
