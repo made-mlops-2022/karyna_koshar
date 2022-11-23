@@ -1,0 +1,2 @@
+path_with_data: "data/heart_cleveland_upload.csv"
+path_to_save: "reports/EDA.html"

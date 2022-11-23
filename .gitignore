@@ -4,3 +4,9 @@ __pycache__
 .env
 .pytest_cache
 model
+*.mypy
+build/
+dist/
+*.egg-info/
+mlruns
+*.mypy_cache
